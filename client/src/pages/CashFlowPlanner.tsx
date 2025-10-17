@@ -213,7 +213,10 @@ export default function CashFlowPlanner() {
           title="本月固定可支配金額分配"
           totalAmount={fixedDisposableIncome}
           budgetId={budget?.id}
-          categories={categories || []}
+          categories={categories?.map(cat => ({
+            ...cat,
+            type: cat.type === "savings" ? "fixed" : "extra"
+          })) || []}
           type="fixed"
         />
 
@@ -254,7 +257,10 @@ export default function CashFlowPlanner() {
           title="本月額外可支配金額分配"
           totalAmount={extraDisposableIncome}
           budgetId={budget?.id}
-          categories={categories || []}
+          categories={categories?.map(cat => ({
+            ...cat,
+            type: cat.type === "savings" ? "fixed" : "extra"
+          })) || []}
           type="extra"
         />
 

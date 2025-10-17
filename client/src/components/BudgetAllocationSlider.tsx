@@ -119,7 +119,7 @@ export default function BudgetAllocationSlider({
       budgetId,
       data: {
         name: newCategoryName,
-        type,
+        type: type === "fixed" ? "savings" : "expense", // Map component types to schema types
         percentage: 0,
         color,
       },
