@@ -1,3 +1,5 @@
+import { z } from 'zod';
+
 // Common types shared between frontend and backend
 export interface AssetAccount {
   id: string;
