@@ -17,6 +17,7 @@ import { useSavingsJars } from "@/hooks/useSavingsJars";
 import { useQuery } from "@tanstack/react-query";
 import { Plus, ChevronRight } from "lucide-react";
 import type { SavingsJar } from "@/shared/schema";
+import type { ExtendedBudgetCategory } from "@/types/extended";
 
 export default function CashFlowPlanner() {
   const now = new Date();
@@ -70,7 +71,7 @@ export default function CashFlowPlanner() {
     // 先處理預算類別
     if (categories && categories.length > 0) {
       categories.forEach(cat => {
-        const amount = cat.type === "fixed"
+        const amount = cat.type === "savings" // Changed from "fixed" to match schema types
           ? (fixedDisposableIncome * (cat.percentage || 0)) / 100
           : (extraDisposableIncome * (cat.percentage || 0)) / 100;
         
@@ -213,7 +214,10 @@ export default function CashFlowPlanner() {
           title="本月固定可支配金額分配"
           totalAmount={fixedDisposableIncome}
           budgetId={budget?.id}
-          categories={categories || []}
+          categories={(categories || []).map(cat => ({
+            ...cat,
+            type: cat.type === "savings" ? "fixed" : "extra"
+          } as ExtendedBudgetCategory))}
           type="fixed"
         />
 
@@ -254,7 +258,10 @@ export default function CashFlowPlanner() {
           title="本月額外可支配金額分配"
           totalAmount={extraDisposableIncome}
           budgetId={budget?.id}
-          categories={categories || []}
+          categories={(categories || []).map(cat => ({
+            ...cat,
+            type: cat.type === "savings" ? "fixed" : "extra"
+          } as ExtendedBudgetCategory))}
           type="extra"
         />
 

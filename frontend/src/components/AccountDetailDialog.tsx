@@ -31,7 +31,7 @@ import { queryClient, apiRequest } from "@/lib/queryClient";
 import { format } from "date-fns";
 import { zhTW } from "date-fns/locale";
 import { Edit2, TrendingUp, TrendingDown, DollarSign } from "lucide-react";
-import type { AssetAccount, LedgerEntry } from "@/shared/schema";
+import type { LedgerEntry } from "@/shared/schema";
 
 const currencies = [
   { value: "TWD", label: "台幣 (TWD)" },
@@ -253,7 +253,7 @@ export default function AccountDetailDialog({ accountId, open, onOpenChange }: A
         amount,
         type: tx.type,
         category: tx.category,
-        note: tx.note,
+        note: tx.note || "",
       };
       
       currentBalance = balanceAfter;
