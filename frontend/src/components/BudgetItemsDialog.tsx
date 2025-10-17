@@ -5,6 +5,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { useToast } from "@/hooks/use-toast";
 import { useBudgetItems, useCreateBudgetItem, useDeleteBudgetItem } from "@/hooks/useBudgetItems";
+import type { ExtendedBudgetItem } from "@/types/types";
 import { Plus, Trash2 } from "lucide-react";
 
 interface BudgetItemsDialogProps {

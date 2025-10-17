@@ -1,9 +1,10 @@
 import { useQuery, useMutation } from "@tanstack/react-query";
 import { apiRequest, queryClient } from "@/lib/queryClient";
-import type { BudgetItem, InsertBudgetItem } from "@shared/schema";
+import type { BudgetItem, InsertBudgetItem } from "@/shared/schema";
+import type { ExtendedBudgetItem } from "@/types/types";
 
 export function useBudgetItems(budgetId?: string) {
-  return useQuery<BudgetItem[]>({
+  return useQuery<ExtendedBudgetItem[]>({
     queryKey: ["/api/budgets", budgetId, "items"],
     enabled: !!budgetId,
   });

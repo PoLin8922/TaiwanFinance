@@ -1,9 +1,10 @@
 import { useQuery, useMutation } from "@tanstack/react-query";
 import { apiRequest, queryClient } from "@/lib/queryClient";
-import type { SavingsJarDeposit, InsertSavingsJarDeposit } from "@shared/schema";
+import type { SavingsJarDeposit, InsertSavingsJarDeposit } from "@/shared/schema";
+import type { ExtendedSavingsJarDeposit } from "@/types/types";
 
 export function useSavingsJarDeposits(jarId?: string) {
-  return useQuery<SavingsJarDeposit[]>({
+  return useQuery<ExtendedSavingsJarDeposit[]>({
     queryKey: ["/api/savings-jars", jarId, "deposits"],
     enabled: !!jarId,
   });
