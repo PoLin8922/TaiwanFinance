@@ -31,7 +31,7 @@ import { queryClient, apiRequest } from "@/lib/queryClient";
 import { format } from "date-fns";
 import { zhTW } from "date-fns/locale";
 import { Edit2, TrendingUp, TrendingDown, DollarSign } from "lucide-react";
-import type { LedgerEntry } from "@/shared/schema";
+import type { LedgerEntryWithNote } from "@/types/types";
 
 const currencies = [
   { value: "TWD", label: "台幣 (TWD)" },
@@ -74,7 +74,7 @@ export default function AccountDetailDialog({ accountId, open, onOpenChange }: A
   const account = accounts?.find(a => a.id === accountId);
 
   // Fetch account transactions
-  const { data: transactions } = useQuery<LedgerEntry[]>({
+  const { data: transactions } = useQuery<LedgerEntryWithNote[]>({
     queryKey: ['/api/ledger', { accountId }],
     queryFn: async () => {
       const response = await fetch(`/api/ledger?accountId=${accountId}`);
