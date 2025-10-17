@@ -7,12 +7,13 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from 
 import { Label } from "@/components/ui/label";
 import { Plus, Trash2 } from "lucide-react";
 import { useCreateSavingsJarCategory, useUpdateSavingsJarCategory, useDeleteSavingsJarCategory } from "@/hooks/useSavingsJarCategories";
-import type { SavingsJarCategory } from "@shared/schema";
+import type { SavingsJarCategory } from "@/shared/schema";
+import type { ExtendedSavingsJarCategory } from "@/types/extended";
 
 interface SavingsJarAllocationProps {
   totalAmount: number;
   jarId: string;
-  categories: SavingsJarCategory[];
+  categories: ExtendedSavingsJarCategory[];
 }
 
 const categoryColors = [

@@ -16,7 +16,7 @@ import { useBudgetItems } from "@/hooks/useBudgetItems";
 import { useSavingsJars } from "@/hooks/useSavingsJars";
 import { useQuery } from "@tanstack/react-query";
 import { Plus, ChevronRight } from "lucide-react";
-import type { SavingsJar } from "@shared/schema";
+import type { SavingsJar } from "@/shared/schema";
 
 export default function CashFlowPlanner() {
   const now = new Date();

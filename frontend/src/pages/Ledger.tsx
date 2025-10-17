@@ -220,7 +220,7 @@ export default function Ledger() {
             </Button>
             
             <div className="flex gap-1">
-              <Select value={selectedYear.toString()} onValueChange={(v) => setSelectedYear(parseInt(v))}>
+              <Select value={selectedYear.toString()} onValueChange={(v: string) => setSelectedYear(parseInt(v))}>
                 <SelectTrigger className="w-24" data-testid="select-year">
                   <SelectValue />
                 </SelectTrigger>
@@ -233,7 +233,7 @@ export default function Ledger() {
                 </SelectContent>
               </Select>
               
-              <Select value={selectedMonthNum.toString()} onValueChange={(v) => setSelectedMonthNum(parseInt(v))}>
+              <Select value={selectedMonthNum.toString()} onValueChange={(v: string) => setSelectedMonthNum(parseInt(v))}>
                 <SelectTrigger className="w-20" data-testid="select-month">
                   <SelectValue />
                 </SelectTrigger>

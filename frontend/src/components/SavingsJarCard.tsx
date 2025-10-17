@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
 import { Switch } from "@/components/ui/switch";
 import { PiggyBank, Settings } from "lucide-react";
-import type { SavingsJar } from "@shared/schema";
+import type { SavingsJar } from "@/shared/schema";
 import { useUpdateSavingsJar } from "@/hooks/useSavingsJars";
 
 interface SavingsJarCardProps {

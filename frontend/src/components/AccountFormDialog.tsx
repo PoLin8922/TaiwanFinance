@@ -9,7 +9,7 @@ import { Switch } from "@/components/ui/switch";
 import { useToast } from "@/hooks/use-toast";
 import { useAssets, useCreateAsset, useUpdateAsset } from "@/hooks/useAssets";
 import { Plus, X } from "lucide-react";
-import type { InsertAssetAccount } from "@shared/schema";
+import type { InsertAssetAccount } from "@/shared/schema";
 
 interface AccountFormDialogProps {
   open: boolean;

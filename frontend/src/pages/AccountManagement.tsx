@@ -9,13 +9,13 @@ export default function AccountManagement() {
   const [, setLocation] = useLocation();
   const { data: accounts, isLoading } = useAssets();
 
-  const groupedAccounts = accounts?.reduce((acc, account) => {
+  const groupedAccounts: Record<string, typeof accounts> = accounts?.reduce((acc, account) => {
     if (!acc[account.type]) {
       acc[account.type] = [];
     }
     acc[account.type].push(account);
     return acc;
-  }, {} as Record<string, typeof accounts>);
+  }, {} as Record<string, typeof accounts>) || {};
 
   return (
     <div className="min-h-screen pb-20 bg-background">

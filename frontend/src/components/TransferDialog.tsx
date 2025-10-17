@@ -10,7 +10,7 @@ import { useAssets } from "@/hooks/useAssets";
 import { apiRequest } from "@/lib/queryClient";
 import { queryClient } from "@/lib/queryClient";
 import { ArrowRightLeft } from "lucide-react";
-import type { AssetAccount } from "@shared/schema";
+import type { AssetAccount } from "@/shared/schema";
 
 interface TransferDialogProps {
   open: boolean;

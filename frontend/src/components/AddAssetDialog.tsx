@@ -25,8 +25,20 @@ import {
 import { Input } from "@/components/ui/input";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { insertAssetAccountSchema } from "@shared/schema";
-import type { InsertAssetAccount } from "@shared/schema";
+import { insertAssetAccountSchema } from "@/shared/schema";
+import type { InsertAssetAccount } from "@/shared/schema";
+import * as z from "zod";
+
+const insertAssetAccountSchema = z.object({
+  type: z.string().min(1, "請選擇類型"),
+  userId: z.string(),
+  accountName: z.string().min(1, "請輸入帳戶名稱"),
+  note: z.string().optional(),
+  balance: z.string(),
+  currency: z.string(),
+  exchangeRate: z.string().optional(),
+  includeInTotal: z.string()
+});
 import { useCreateAsset } from "@/hooks/useAssets";
 import { useToast } from "@/hooks/use-toast";
 import { Plus } from "lucide-react";
@@ -51,11 +63,13 @@ export default function AddAssetDialog() {
     resolver: zodResolver(insertAssetAccountSchema),
     defaultValues: {
       type: "",
-      bankOrBroker: "",
+      userId: "",
       accountName: "",
+      note: "",
       balance: "0",
       currency: "TWD",
       exchangeRate: "1",
+      includeInTotal: "true",
     },
   });
 
@@ -120,7 +134,7 @@ export default function AddAssetDialog() {
 
             <FormField
               control={form.control}
-              name="bankOrBroker"
+              name="accountName"
               render={({ field }) => (
                 <FormItem>
                   <FormLabel>銀行/券商</FormLabel>

@@ -14,7 +14,7 @@ import {
 } from "@/components/ui/select";
 import { useAssets, useCreateAsset } from "@/hooks/useAssets";
 import { useToast } from "@/hooks/use-toast";
-import type { InsertAssetAccount } from "@shared/schema";
+import type { InsertAssetAccount } from "@/shared/schema";
 
 const defaultAccountTypes = ["台幣", "美元", "日幣", "台股", "美股", "加密貨幣", "房地產"];
 const currencies = [

@@ -7,13 +7,13 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from 
 import { Label } from "@/components/ui/label";
 import { Plus, Trash2 } from "lucide-react";
 import { useCreateBudgetCategory, useUpdateBudgetCategory, useDeleteBudgetCategory } from "@/hooks/useBudgetCategories";
-import type { BudgetCategory } from "@shared/schema";
+import type { ExtendedBudgetCategory } from "@/types/extended";
 
 interface BudgetAllocationSliderProps {
   title?: string;
   totalAmount: number;
   budgetId?: string;
-  categories: BudgetCategory[];
+  categories: ExtendedBudgetCategory[];
   type: "fixed" | "extra";
 }
 
@@ -81,7 +81,10 @@ export default function BudgetAllocationSlider({
     // Update server when user finishes dragging
     await updateCategory.mutateAsync({
       id,
-      data: { percentage: newValue },
+      data: { 
+        percentage: Number(newValue),
+        amount: (totalAmount * Number(newValue) / 100).toString()
+      },
     });
   };
 
@@ -119,7 +122,7 @@ export default function BudgetAllocationSlider({
       budgetId,
       data: {
         name: newCategoryName,
-        type,
+        type: type === "fixed" ? "expense" : "savings",
         percentage: 0,
         color,
       },

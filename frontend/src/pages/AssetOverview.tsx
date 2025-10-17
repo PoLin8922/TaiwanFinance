@@ -9,6 +9,7 @@ import AccountDetailDialog from "@/components/AccountDetailDialog";
 import TransferDialog from "@/components/TransferDialog";
 import { useAssets } from "@/hooks/useAssets";
 import { useMemo, useState } from "react";
+import { Asset, AssetType, ChartData } from "@/types/asset";
 
 export default function AssetOverview() {
   const { data: accounts, isLoading } = useAssets();
@@ -48,7 +49,7 @@ export default function AssetOverview() {
       }, { totalAssets: 0, totalLiabilities: 0 });
   }, [accounts]);
 
-  const breakdownData = useMemo(() => {
+  const breakdownData = useMemo((): ChartData[] => {
     if (!accounts) return [];
     
     const typeGroups = accounts
@@ -73,24 +74,21 @@ export default function AssetOverview() {
       "hsl(var(--chart-5))",
     ];
 
-    return Object.entries(typeGroups).map(([name, value], index) => ({
+    const typedGroups: Record<string, number> = typeGroups;
+    return Object.entries(typedGroups).map(([name, value], index) => ({
       name,
       value,
       color: colors[index % colors.length],
     }));
   }, [accounts]);
 
-  const detailData = useMemo(() => {
+  const detailData = useMemo((): AssetType[] => {
     if (!accounts) return [];
     
-    const grouped = accounts.reduce((acc, account) => {
+    const grouped = accounts.reduce<Record<string, Asset[]>>((acc, account) => {
       if (!acc[account.type]) {
         acc[account.type] = [];
       }
-      const twd = account.currency === "TWD"
-        ? parseFloat(account.balance)
-        : parseFloat(account.balance) * parseFloat(account.exchangeRate || "1");
-      
       acc[account.type].push({
         accountId: account.id,
         bank: account.accountName,
@@ -99,9 +97,9 @@ export default function AssetOverview() {
         exchangeRate: parseFloat(account.exchangeRate || "1"),
       });
       return acc;
-    }, {} as Record<string, any[]>);
+    }, {});
 
-    return Object.entries(grouped).map(([type, assets]) => ({
+    return Object.entries(grouped).map(([type, assets]): AssetType => ({
       type,
       assets,
     }));

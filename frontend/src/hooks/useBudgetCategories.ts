@@ -1,6 +1,6 @@
 import { useQuery, useMutation } from "@tanstack/react-query";
 import { queryClient, apiRequest } from "@/lib/queryClient";
-import type { BudgetCategory, InsertBudgetCategory } from "@shared/schema";
+import type { BudgetCategory, InsertBudgetCategory } from "@/shared/schema";
 
 export function useBudgetCategories(budgetId: string | undefined) {
   return useQuery<BudgetCategory[]>({

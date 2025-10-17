@@ -12,7 +12,7 @@ import { useAssets } from "@/hooks/useAssets";
 import { useCreateSavingsJarDeposit, useSavingsJarDeposits } from "@/hooks/useSavingsJarDeposits";
 import { useSavingsJarCategories } from "@/hooks/useSavingsJarCategories";
 import SavingsJarAllocation from "@/components/SavingsJarAllocation";
-import type { SavingsJar } from "@shared/schema";
+import type { SavingsJar } from "@/shared/schema";
 import { Trash2, CalendarIcon } from "lucide-react";
 import { useDeleteSavingsJar } from "@/hooks/useSavingsJars";
 import { format } from "date-fns";
